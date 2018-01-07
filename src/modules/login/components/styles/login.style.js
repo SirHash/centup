@@ -21,6 +21,10 @@ export default styles = StyleSheet.create({
     width: 300,
     height: 150,
   },
+  logoMiniImg: {
+    width: 40,
+    height: 30,
+  },
   containerFields: {
     flex: 2
   },
