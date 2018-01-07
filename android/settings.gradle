@@ -1,0 +1,3 @@
+rootProject.name = 'centup3'
+
+include ':app'
