@@ -12,8 +12,9 @@ export default class App extends React.Component {
     return (
       <Router>
         <Stack key="root" >
-          <Scene key="home" component={Home} hideNavBar />
           <Scene key="login" component={Login} title="Login" hideNavBar />
+          <Scene key="home" component={Home} hideNavBar />
+
           <Scene key="listNewsScreen" component={ListNewsScreen} title="List News" />
           {/* <Scene key="register" component={Splash} title="Splash" /> */}
           {/* <Scene key="register" component={News} title="News" /> */}

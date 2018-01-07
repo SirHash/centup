@@ -20,6 +20,8 @@ const saeInput = (
   export default class Login extends React.Component{
 
     render(){
+
+      console.log(this.props);
       return(
       <ImageBackground
         source={ require('centup3/src/assets/imgs/bg-fundo.jpeg' )}
