@@ -24,7 +24,7 @@ const saeInput = (
       console.log(this.props);
       return(
       <ImageBackground
-        source={ require('centup3/src/assets/imgs/bg-fundo.jpeg' )}
+        source={ require('centup3/src/assets/imgs/bg-fundo.png' )}
         style={ styles.bgImg }>
         <View style={ styles.containerTop } >
           <Image source={ require('centup3/src/assets/imgs/logo.png')}
@@ -37,8 +37,7 @@ const saeInput = (
         <View style={ styles.containerFields } >
           <TextInput
             style={ styles.textFields }
-            placeholder={this.saeInput}
-
+            placeholder='Email'
             keyboardType='email-address'
             placeholderTextColor='gray'
             underlineColorAndroid='transparent'
@@ -57,17 +56,17 @@ const saeInput = (
           <TouchableHighlight
             onPress={ () => { Actions.listNewsScreen() } }
             style={ styles.btnLogin }>
-            <Text style={ styles.btnText }>Login</Text>
+            <Text style={ styles.btnText }>Log In</Text>
           </TouchableHighlight>
           <View style={ styles.containerLinks } >
             <TouchableHighlight
               onPress={ () => { return null } }
-            underlayColor='transparent'  >
-              <Text >Login with Facebook</Text>
+              underlayColor='transparent'  >
+              <Text style={styles.textWhite}>Login with Facebook</Text>
             </TouchableHighlight>
             <TouchableHighlight
               onPress={ () => { return null } }
-            underlayColor='transparent' >
+              underlayColor='transparent' >
               <Text style={ styles.textBold }>Forgot Password?</Text>
             </TouchableHighlight>
           </View>

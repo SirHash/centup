@@ -9,17 +9,19 @@ export default styles = StyleSheet.create({
     // justifyContent:'center'
   },
   containerTop: {
-    flex: 3
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   textInit:{
     paddingBottom:20,
     fontSize: 18,
-    fontWeight: "900"
-
+    fontWeight: "900",
   },
   logoImg:{
-    width: 300,
-    height: 150,
+    width: 220,
+    height: 70,
+    marginBottom: 20
   },
   logoMiniImg: {
     width: 40,
@@ -34,12 +36,13 @@ export default styles = StyleSheet.create({
     width: 300,
     height: 50,
     borderColor: 'gray',
-    borderWidth: 1,
+    borderWidth: 0,
     margin: 5,
-    borderRadius: 5
+    borderRadius: 3,
+    backgroundColor: 'white',
   },
   btnLogin: {
-    backgroundColor: 'blue',
+    backgroundColor: '#40b8e1',
     marginTop: 20,
     width: 300,
     height: 50,
@@ -58,7 +61,13 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  textWhite:{
+    color: 'white',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+  },
   textBold: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
   }
 })
