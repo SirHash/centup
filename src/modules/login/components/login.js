@@ -3,6 +3,7 @@ import { View, Text, Image, ImageBackground, TextInput, TouchableHighlight } fro
 import styles from './styles/login.style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
+import { Actions } from 'react-native-router-flux'
 
 const saeInput = (
   <Sae
@@ -52,7 +53,7 @@ const saeInput = (
         </View>
         <View style={ styles.containerBtns } >
           <TouchableHighlight
-            onPress={ () => { return null } }
+            onPress={ () => { Actions.listNewsScreen() } }
             style={ styles.btnLogin }>
             <Text style={ styles.btnText }>Login</Text>
           </TouchableHighlight>
