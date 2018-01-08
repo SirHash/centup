@@ -7,7 +7,7 @@ export default props => (
   <View style={styles.containerSlider}>
     <StatusBar
       backgroundColor='#f4ddbb'
-    barStyle="default" />
+      barStyle="default" />
     <View style={styles.contentSlider}>
       <ScrollView
         contentContainerStyle={styles.spaceSlider}
