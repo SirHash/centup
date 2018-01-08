@@ -5,9 +5,9 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha } from '../../../redux/actions/AppActions';
+import consts from 'centup3/src/config/constants';
 
 class Login extends React.Component{
-
   render(){
     return(
     <ImageBackground
@@ -43,7 +43,7 @@ class Login extends React.Component{
       </View>
       <View style={ styles.containerBtns } >
         <TouchableHighlight
-          onPress={ () => { Actions.listNewsScreen() } }
+          onPress={ () => { Actions[consts.LIST_NEWS_SCENE]() }}
           style={ styles.btnLogin }>
           <Text style={ styles.btnText }>Log In</Text>
         </TouchableHighlight>

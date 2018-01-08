@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, Text, TouchableHighlight, ScrollView, StatusBar } from 'react-native';
 import styles from '../components/styles/home.style';
 import { Actions } from 'react-native-router-flux';
+import consts from 'centup3/src/config/constants';
 
 export default props => (
   <View style={styles.containerSlider}>
@@ -58,7 +59,7 @@ export default props => (
         </View>
       </TouchableHighlight>
       <View style={styles.containerSecondaryBtns}>
-        <TouchableHighlight style={styles.btnLogin} onPress={ () => { Actions.login() } }>
+        <TouchableHighlight style={styles.btnLogin} onPress={ () => { Actions[consts.LOGIN_SCENE]()/* Atributos de objetos podem ser utilizados como vetores*/ } }>
           <View>
             <Text style={styles.txtBtnLogin}>Login</Text>
           </View>
