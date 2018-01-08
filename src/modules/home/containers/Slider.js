@@ -1,14 +1,11 @@
 import React from 'react';
-import { View, Image, Text, TouchableHighlight, ScrollView, StatusBar } from 'react-native';
+import { View, Image, Text, TouchableHighlight, ScrollView } from 'react-native';
 import styles from '../components/styles/home.style';
 import { Actions } from 'react-native-router-flux';
 import consts from 'centup3/src/config/constants';
 
 export default props => (
   <View style={styles.containerSlider}>
-    <StatusBar
-      backgroundColor='#f4ddbb'
-      barStyle="default" />
     <View style={styles.contentSlider}>
       <ScrollView
         contentContainerStyle={styles.spaceSlider}
