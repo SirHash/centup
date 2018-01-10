@@ -15,3 +15,16 @@ export default class App extends React.Component {
     );
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+//🐴 Tenho que certeza que não me viu!!!, mas eu to aí.
