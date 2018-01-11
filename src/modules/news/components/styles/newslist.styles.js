@@ -1,30 +1,52 @@
 import { StyleSheet } from 'react-native';
 
 export default styles = StyleSheet.create({
-  viewNews: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    // alignItems: 'flex-start',
+  newsList: {
     borderBottomWidth: 1,
     borderColor: "#ccc",
+    flexDirection: 'row',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    padding: 5,
+    // // margin: 5,
   },
-  textNews: {
-    marginTop: 25,
-    fontSize: 18,
-    color: 'blue',
-    alignItems: 'flex-start',
+  viewList1: {
+    width: 30,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // padding: 10,
+    margin: 10,
+  },
+  viewList2: {
+    width: 300,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // padding: 10,
+    margin: 10,
+  },
+  viewList3: {
+    width: 15,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // padding: 10,
+    margin: 10,
   },
   imgCircle: {
-    borderRadius: 100,
-    margin: 10,
+    borderRadius: 25,
+    // marginRight: 5,
     width: 50,
     height: 50
   },
+  textNews: {
+    fontSize: 14,
+    color: 'blue',
+  },
   imgArrow: {
-    // borderRadius: 100,
-    marginTop: 25,
-    marginRight: 15,
-    width: 25,
-    height: 25
+    borderRadius: 15,
+    width: 20,
+    height: 20
   }
 });

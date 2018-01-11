@@ -12,7 +12,7 @@ export default props => (
     <Stack key="root" >
       <Scene key="home" component={Home} hideNavBar />
       <Scene key="login" component={Login} title="Login" hideNavBar />
-      <Scene key="listNewsScreen" component={ListNewsScreen} title="List News" />
+      <Scene key="listNewsScreen" component={ListNewsScreen} title="Lista de Notícias" />
       {/* <Scene key="register" component={Splash} title="Splash" /> */}
       {/* <Scene key="register" component={News} title="News" /> */}
     </Stack>
