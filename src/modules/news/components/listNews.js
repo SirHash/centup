@@ -13,7 +13,7 @@ export default class ListNews extends Component {
               <Image style={ styles.imgCircle } source={{ uri: this.props.data.thumbnailUrl }} />
               </View >
 
-              <View style={ styles.viewList2 }>
+              <View style={ styles.viewList2 } >
                 <Text style={ styles.textNews } >Descrição: { this.props.data.title }</Text>
                 <Text style={ styles.textNews } >Link: { this.props.data.url }</Text>
               </View>

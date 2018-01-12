@@ -1,17 +1,10 @@
-// import React from 'react';
-// import ListNews from '../components/listNews'
-//
-// export default props => (
-//       <ListNews/>
-// )
-
 import React from 'react';
 import { View, ScrollView, FlatList } from 'react-native';
 import axios from 'axios';
 
 import ListNews from './../components/listNews'
 
-const obj = [
+const data = [ 
     {
       "albumId": 1,
       "id": 1,
@@ -363,26 +356,48 @@ export default class ListNewsSreen extends React.Component {
     super(props);
     this.state = {
       data: [],
+      loading: false,
+      page: 1,
+      seed: 1,
+      error: null,
+      refresing: false
     };
-
   }
 
   componentWillMount() {
-     axios.get('https://jsonplaceholder.typicode.com/photos')
-       .then( response => { this.setState({ data: response.data }); })
-       .catch( () => { console.log('Erro ao recuperar dados'); })
+    this.atualizaView();
   }
 
+  atualizaView(){
+    // axios.get('https://jsonplaceholder.typicode.com/photos/${page}')
+    //   .then( response => { this.setState({ data: response.data }); })
+    //   .catch( () => { console.log('Erro ao recuperar dados!'); })
+    const { page, seed } = this.state;
+    const url = 'https://jsonplaceholder.typicode.com/photos/${page}'
+  }
+  //testando FlatList
+  render() {
+      return(
+        <FlatList
+          data={ this.state.data }
+          renderItem={
+            ( { item } ) => <ListNews data={ item } key={ item.id }></ListNews> }
+          keyExtractor={ item => item.id }
+        >
+        </FlatList>
+      )
+    }
+
     //Funciona legal, mais carrega todo o obj
-    render() {
-        return(
-          <ScrollView>
-            {
-              obj.map( data => (<ListNews data ={ data } key={ data.id }></ListNews>))
-            }
-          </ScrollView>
-        )
-      }
+    // render() {
+    //     return(
+    //       <ScrollView>
+    //         {
+    //           obj.map( data => (<ListNews data ={ data } key={ data.id }></ListNews>))
+    //         }
+    //       </ScrollView>
+    //     )
+    //   }
 
     //Trava devido a quantidade de dados
     // render() {
