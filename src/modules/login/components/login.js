@@ -3,9 +3,9 @@ import { View, Text, Image, ImageBackground, TextInput, TouchableHighlight } fro
 import styles from './styles/login.style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import { connect } from 'react-redux';
-import{ changeEmail, changePassword } from '../../../redux/actions/AppActions';
-
+import { changeEmail, changePassword } from '../../../redux/actions/AppActions';
+import consts from 'centup3/src/config/constants';
+import {connect} from 'react-redux';
 
 class Login extends React.Component{
     render(){
@@ -45,21 +45,23 @@ class Login extends React.Component{
         </View>
         <View style={ styles.containerBtns } >
           <TouchableHighlight
-            onPress={ () => { Actions.listNewsScreen() } }
+            onPress={ () => { Actions[consts.LIST_NEWS_SCENE]() }}
             style={ styles.btnLogin }>
             <Text style={ styles.btnText }>Log In</Text>
           </TouchableHighlight>
           <View style={ styles.containerLinks } >
-            <TouchableHighlight
-              onPress={ () => { return null } }
-            underlayColor='transparent'  >
-              <Text style={styles.textWhite}>Login with Facebook</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={ () => { return null } }
-            underlayColor='transparent' >
-              <Text style={ styles.textBold }>Forgot Password?</Text>
-            </TouchableHighlight>
+            <View style={ styles.containerLinks } >
+              <TouchableHighlight
+                onPress={ () => { return null } }
+                underlayColor='transparent'  >
+                <Text style={styles.textWhite}>Login with Facebook</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={ () => { return null } }
+                underlayColor='transparent' >
+                <Text style={ styles.textBold }>Forgot Password?</Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </View>
       </ImageBackground>
