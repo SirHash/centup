@@ -1,6 +1,11 @@
 {
   "ecmaVersion": 6,
-  "libs": [],
+  "libs": [
+    "browser",
+    "chai",
+    "jquery",
+    "underscore"
+  ],
   "loadEagerly": [
     "browser"
   ],
@@ -29,6 +34,7 @@
       "paths": "",
       "override": ""
     },
-    "commonjs": {}
+    "commonjs": {},
+    "angular": {}
   }
 }
