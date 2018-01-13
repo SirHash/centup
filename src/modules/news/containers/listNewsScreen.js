@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
+import {Actions} from 'react-native-router-flux';
+import consts from '../../../config/constants'
 
 export default class ListNewsScreen extends Component {
   constructor(props) {
@@ -103,11 +105,14 @@ export default class ListNewsScreen extends Component {
           data={this.state.data}
           renderItem={({ item }) => (
             <ListItem
+              button
+              onPress={ () => { Actions[consts.NEWS_INFO_SCENE]() } }
               roundAvatar
               title={`${item.title}`}
               subtitle={item.url}
               avatar={{ uri: item.thumbnailUrl }}
               containerStyle={{ borderBottomWidth: 0 }}
+
             />
           )}
           keyExtractor={item => item.id}
