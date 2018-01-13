@@ -41,7 +41,7 @@ export default styles = StyleSheet.create({
     marginTop:10,
     marginBottom:10
   },
-  viewLogo:{
+  viewLogo:{    
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop:10,
@@ -54,8 +54,8 @@ export default styles = StyleSheet.create({
     alignItems: 'center'
   },
   iconsTopo:{
-     width: 20,
-    height: 20,
+    width: 40,
+    height: 40,
     marginRight: 10,
     borderRadius: 100
   },

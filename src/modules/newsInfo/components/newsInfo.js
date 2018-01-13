@@ -11,8 +11,8 @@ export default class newsInfo extends Component {
                     <View style={styles.divTopo}>
                         <View style={styles.viewLogo}>
                             <Image style={styles.logoImg} source={require('centup3/src/assets/imgs/logo.png')}  />
-                            <Image style={styles.iconsTopo} source={require('centup3/src/assets/imgs/star.png')}/>
-                            <Image style={styles.iconsTopo} source={require('centup3/src/assets/imgs/iconGo.png')}/>
+                            {/* <Image style={styles.iconsTopo} source={require('centup3/src/assets/imgs/star.png')}/>
+                            <Image style={styles.iconsTopo} source={require('centup3/src/assets/imgs/iconGo.png')}/> */}
                         </View>                        
                         <Text style={styles.txtTitulo}>Apple's advertising problems may not be with its ad agency</Text>
                     </View>
