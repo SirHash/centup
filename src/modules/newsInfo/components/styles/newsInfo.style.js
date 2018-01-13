@@ -1,11 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 export default styles = StyleSheet.create({
-  txtTitulo:{
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-    alignItems:'center',
-    paddingTop: 70
+  txtTitulo:{          
+    paddingTop: 5,
+    fontWeight: 'bold',
+    color: '#abdafc',
+    fontSize: 30,
+    textAlign: 'center'
     // justifyContent:'center'
   },
   txtSubtitulo: {
@@ -13,61 +14,79 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  textInit:{
-    paddingBottom:20,
-    fontSize: 18,
-    fontWeight: "900",
+  imgNews:{
+    width: 340,
+    height: 180,
+    marginBottom: 5
   },
   logoImg:{
-    width: 220,
-    height: 70,
-    marginBottom: 20
+    width: 200,  
+    height: 70    
   },
   logoMiniImg: {
-    width: 40,
-    height: 30,
+    width: 20,
+    height: 20,
+    marginRight: 10,
+    borderRadius: 100
   },
-  containerFields: {
-    flex: 2
-  },
-  textFields: {
-    fontSize: 18,
-    paddingLeft: 15,
-    width: 300,
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 0,
-    margin: 5,
-    borderRadius: 3,
-    backgroundColor: 'white',
-  },
-  btnLogin: {
-    backgroundColor: '#40b8e1',
-    marginTop: 20,
-    width: 300,
-    height: 50,
-    justifyContent: 'center',
+  divTopo: {
+    //Alinha o conteudo dentro da View Verticalmente, ou espaço entre os componentes
+    justifyContent: 'space-around',    
+    //Alinha o conteudo dentro da View Horizontalmente
     alignItems: 'center',
-    borderRadius: 5,
   },
-  btnText: {
-    fontSize: 18,
-    color: 'white',
-  },
-  containerBtns: {
-    flex: 4,
-  },
-  containerLinks: {
+  divSubtitle:{
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop:10,
+    marginBottom:10
   },
-  textWhite:{
-    color: 'white',
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
+  viewLogo:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop:10,
+    marginBottom:10
   },
-  textBold: {
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
+  divImg: {
+    //Alinha o conteudo dentro da View Verticalmente, ou espaço entre os componentes
+    justifyContent: 'space-around',    
+    //Alinha o conteudo dentro da View Horizontalmente
+    alignItems: 'center'
+  },
+  iconsTopo:{
+     width: 20,
+    height: 20,
+    marginRight: 10,
+    borderRadius: 100
+  },
+  bgImg:{
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    justifyContent:'center',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  divGlobal:{
+    flexDirection: 'column'
+  },
+  subtitle: {
+    marginLeft: 10,
+    marginTop: 5
+  },
+  txtUnderImg:{
+    fontSize: 10,
+    textAlign: 'center'
+  },
+  viewUnderImg:{
+     marginRight: 10,
+     marginLeft: 10
+  },
+  viewBottom: {
+    alignItems:'center',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop:10    
+  },
+  txtDescription:{    
   }
 })

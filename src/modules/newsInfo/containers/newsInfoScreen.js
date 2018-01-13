@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../components/newsInfo';
+import Info from '../components/newsInfo';
 
 export default props => (
     <Info />
