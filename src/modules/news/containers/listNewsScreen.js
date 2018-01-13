@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
-import {Actions} from 'react-native-router-flux';
-import consts from '../../../config/constants'
 
 export default class ListNewsScreen extends Component {
+
   constructor(props) {
+    alert('constructor');
     super(props);
 
     this.state = {
@@ -17,16 +17,18 @@ export default class ListNewsScreen extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    alert('componentWillMount')
     this.makeRemoteRequest();
   }
 
   makeRemoteRequest = () => {
+    alert('makeRemoteRequest')
     const { page } = this.state;
     // const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
     const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}`;
     this.setState({ loading: true });
-
+    alert(url);
     fetch(url)
       .then(res => res.json())
 
@@ -85,7 +87,8 @@ export default class ListNewsScreen extends Component {
   };
 
   renderFooter = () => {
-    if (!this.state.loading) return null;
+    if (!this.state.loading)
+      return null;
 
     return (
       <View style={{
@@ -105,14 +108,11 @@ export default class ListNewsScreen extends Component {
           data={this.state.data}
           renderItem={({ item }) => (
             <ListItem
-              button
-              onPress={ () => { Actions[consts.NEWS_INFO_SCENE]() } }
               roundAvatar
               title={`${item.title}`}
               subtitle={item.url}
               avatar={{ uri: item.thumbnailUrl }}
               containerStyle={{ borderBottomWidth: 0 }}
-
             />
           )}
           keyExtractor={item => item.id}
