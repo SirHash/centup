@@ -1,21 +1,20 @@
-import {
-  MODIFICA_EMAIL,
-  MODIFICA_SENHA,
-} from '../types/types';
+import { CHANGE_EMAIL, CHANGE_PASSWORD, CHANGE_NAME } from '../types/types';
 
 const INITIAL_STATE = {
-  email: 'reynaldomarinho@hotmail.com',
-  senha: '',
-}
+  name: 'higornunes',
+  email: 'teste@teste.com',
+  password: '123456',
+};
 
 export default (state = INITIAL_STATE, action) => {
-  //console.log(action);
-  switch(action.type) {
-    case MODIFICA_EMAIL:
+  switch (action.type) {
+    case CHANGE_EMAIL:
       return { ...state, email: action.payload }
-    case MODIFICA_SENHA:
-      return { ...state, senha: action.payload }
+    case CHANGE_PASSWORD:
+      return { ...state, password: action.payload }
+    case CHANGE_NAME:
+      return { ...state, name: action.payload }
     default:
       return state;
   }
-}
+};

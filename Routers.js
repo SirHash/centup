@@ -16,5 +16,4 @@ export default props => (
       <Scene key={consts.LIST_NEWS_SCENE} component={ListNewsScreen} title="List News" />
     </Stack>
   </Router>
-
 )

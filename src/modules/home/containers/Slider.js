@@ -40,12 +40,12 @@ export default props => (
     <View style={styles.containerNavigatorSlider}>
       <TouchableHighlight>
         <View style={{backgroundColor: 'blue',borderRadius: 7,
-        width: 7, height: 7,margin: 1}}>
+                      width: 7, height: 7,margin: 1}}>
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
         <View style={{backgroundColor: 'gray',borderRadius: 7,
-        width: 7, height: 7,margin: 1}}>
+                      width: 7, height: 7,margin: 1}}>
         </View>
       </TouchableHighlight>
     </View>
