@@ -13,7 +13,7 @@ export default props => (
     <Stack key="root" >
       <Scene key={consts.HOME_SCENE} component={Home} hideNavBar />
       <Scene key={consts.LOGIN_SCENE} component={Login} title="Login" hideNavBar />
-      <Scene key={consts.LIST_NEWS_SCENE} component={ListNewsScreen} title="List News" />
+      <Scene key={consts.LIST_NEWS_SCENE} component={ListNewsScreen} title="Lista de Notícias" />
     </Stack>
   </Router>
 )

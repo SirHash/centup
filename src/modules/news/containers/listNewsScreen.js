@@ -1,42 +1,38 @@
-//@flow
-import React from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import React, { Component } from "react";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
-import axios from 'axios';
 
-import ListNews from './../components/listNews'
-
-export default class ListNewsSreen extends React.Component {
-
-  constructor(props){
+export default class ListNewsScreen extends Component {
+  constructor(props) {
     super(props);
+
     this.state = {
-      data: [],
       loading: false,
+      data: [],
       page: 1,
-      seed: 1,
       error: null,
-      refresing: false
+      refreshing: false
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.makeRemoteRequest();
   }
 
   makeRemoteRequest = () => {
-    const { page, seed } = this.state;
+    const { page } = this.state;
+    // const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
     const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}`;
     this.setState({ loading: true });
 
+    fetch(url)
+      .then(res => res.json())
 
-    axios.get(url)
-      // .then(res => res.json())
-      .then(data => {
-        this.setState(
-        {
-          data: page === 1 ? data : [...this.state.data],
-          // error: res.error || null,
+      .then(res => {
+        this.setState({
+          // data: page === 1 ? res.results : [...this.state.data, ...res.results],
+          data: res,
+          error: res.error || null,
           loading: false,
           refreshing: false
         });
@@ -49,8 +45,7 @@ export default class ListNewsSreen extends React.Component {
   handleRefresh = () => {
     this.setState(
       {
-        page: 1,
-        seed: this.state.id + 1,
+        page: this.state.page + 1,
         refreshing: true
       },
       () => {
@@ -91,65 +86,40 @@ export default class ListNewsSreen extends React.Component {
     if (!this.state.loading) return null;
 
     return (
-      <View
-        style={{
+      <View style={{
           paddingVertical: 20,
           borderTopWidth: 1,
           borderColor: "#CED0CE"
-        }}
-      >
+      }} >
         <ActivityIndicator animating size="large" />
       </View>
     );
   };
 
   render() {
-      return (
-        <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
-          <FlatList
-            data={this.state.data}
-            renderItem={({ item }) => (
-              <ListItem
-                roundAvatar
-                title={`${item.title}`}
-                subtitle={item.url}
-                avatar={{ uri: item.picture.thumbnail }}
-                containerStyle={{ borderBottomWidth: 0 }}
-              />
-            )}
-            keyExtractor={item => item.id}
-            ItemSeparatorComponent={this.renderSeparator}
-            ListHeaderComponent={this.renderHeader}
-            ListFooterComponent={this.renderFooter}
-            onRefresh={this.handleRefresh}
-            refreshing={this.state.refreshing}
-            onEndReached={this.handleLoadMore}
-            onEndReachedThreshold={50}
-          />
-        </List>
-      );
-    }
+    return (
+      <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+        <FlatList
+          data={this.state.data}
+          renderItem={({ item }) => (
+            <ListItem
+              roundAvatar
+              title={`${item.title}`}
+              subtitle={item.url}
+              avatar={{ uri: item.thumbnailUrl }}
+              containerStyle={{ borderBottomWidth: 0 }}
+            />
+          )}
+          keyExtractor={item => item.id}
+          ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
+          ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={5}
+        />
+      </List>
+    );
   }
-
-    //Funciona legal, mais carrega todo o obj
-    // render() {
-    //     return(
-    //       <ScrollView>
-    //         {
-    //           obj.map( data => (<ListNews data ={ data } key={ data.id }></ListNews>))
-    //         }
-    //       </ScrollView>
-    //     )
-    //   }
-
-    //Trava devido a quantidade de dados
-    // render() {
-    //     return(
-    //
-    //       <ScrollView >
-    //         {
-    //           this.state.listNews.map( data => (<ListNews data={ data } key={ data.id }></ListNews>))
-    //         }
-    //       </ScrollView>
-    //     )
-    //   }
+}
