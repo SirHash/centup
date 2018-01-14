@@ -10,11 +10,12 @@ export default class ListNewsSreen extends React.Component {
 
   constructor(props){
     super(props);
+
     this.state = {
+      loading: false,
       data: [],
       page: 1
     };
-
   }
 
   getData(){
