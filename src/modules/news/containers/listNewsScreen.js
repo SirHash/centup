@@ -4,8 +4,7 @@ import { List, ListItem, SearchBar } from "react-native-elements";
 
 export default class ListNewsScreen extends Component {
 
-  constructor(props) {
-    alert('constructor');
+  constructor(props) {    
     super(props);
 
     this.state = {
@@ -17,25 +16,22 @@ export default class ListNewsScreen extends Component {
     };
   }
 
-  componentWillMount() {
-    alert('componentWillMount')
+  componentWillMount() {    
     this.makeRemoteRequest();
   }
 
-  makeRemoteRequest = () => {
-    alert('makeRemoteRequest')
+  makeRemoteRequest = () => {    
     const { page } = this.state;
     // const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
     const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}`;
-    this.setState({ loading: true });
-    alert(url);
+    this.setState({ loading: true });    
     fetch(url)
       .then(res => res.json())
 
       .then(res => {
         this.setState({
-          // data: page === 1 ? res.results : [...this.state.data, ...res.results],
-          data: res,
+          data: page === 1 ? res : [...this.state.data, ...res],
+          //data: res,
           error: res.error || null,
           loading: false,
           refreshing: false
@@ -122,7 +118,7 @@ export default class ListNewsScreen extends Component {
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={5}
+          onEndReachedThreshold={10}
         />
       </List>
     );
