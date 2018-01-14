@@ -29,33 +29,44 @@ export default styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 100
   },
-  divTopo: {
+  viewTop: {
     //Alinha o conteudo dentro da View Verticalmente, ou espaço entre os componentes
     justifyContent: 'space-around',    
     //Alinha o conteudo dentro da View Horizontalmente
     alignItems: 'center',
   },
-  divSubtitle:{
+  viewSubtitle:{
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop:10,
     marginBottom:10
   },
-  viewLogo:{    
+  navBar:{    
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop:10,
     marginBottom:10
   },
-  divImg: {
+  centerContainer: {      
+    flexDirection: 'row',
+    justifyContent: 'center',    
+  },
+  rightContainer: {
+    flex:1,    
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'    
+  },
+  viewImg: {
     //Alinha o conteudo dentro da View Verticalmente, ou espaço entre os componentes
     justifyContent: 'space-around',    
     //Alinha o conteudo dentro da View Horizontalmente
     alignItems: 'center'
   },
   iconsTopo:{
-    width: 40,
-    height: 40,
+    width: 20,
+    height: 20,
     marginRight: 10,
     borderRadius: 100
   },
@@ -66,7 +77,7 @@ export default styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center'
   },
-  divGlobal:{
+  container:{
     flexDirection: 'column'
   },
   subtitle: {
