@@ -1,0 +1,564 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault(ex) {
+  return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
+}
+
+var ramda = require('ramda');
+var reactNative = require('react-native');
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var mitt = _interopDefault(require('mitt'));
+var XHRInterceptor = _interopDefault(require('react-native/Libraries/Network/XHRInterceptor'));
+var reactotronCoreClient = require('reactotron-core-client');
+var getHost = _interopDefault(require('rn-host-detect'));
+
+var parseErrorStack = void 0;
+var symbolicateStackTrace = void 0;
+
+var PLUGIN_DEFAULTS = {
+  veto: null };
+
+var trackGlobalErrors = function trackGlobalErrors(options) {
+  return function (reactotron) {
+    var config = ramda.merge(PLUGIN_DEFAULTS, options || {});
+
+    var swizzled = null;
+    var isSwizzled = false;
+
+    function reactotronExceptionHijacker(message, prettyStack, currentExceptionID) {
+      swizzled(message, prettyStack, currentExceptionID);
+
+      try {
+        var stack = ramda.map(function (frame) {
+          return {
+            functionName: frame.methodName === '<unknown>' ? null : frame.methodName,
+            lineNumber: frame.lineNumber,
+            columnNumber: frame.column,
+            fileName: frame.file
+          };
+        }, prettyStack);
+
+        if (config.veto) {
+          stack = ramda.reject(config.veto, stack);
+        }
+
+        reactotron.error(message, stack);
+      } catch (e) {}
+    }
+
+    function trackGlobalErrors() {
+      if (isSwizzled) return;
+      if (!reactNative.NativeModules.ExceptionsManager) return;
+      swizzled = reactNative.NativeModules.ExceptionsManager.updateExceptionMessage;
+      reactNative.NativeModules.ExceptionsManager.updateExceptionMessage = reactotronExceptionHijacker;
+      isSwizzled = true;
+    }
+
+    function untrackGlobalErrors() {
+      if (!swizzled) return;
+      if (!reactNative.NativeModules.ExceptionsManager) return;
+      reactNative.NativeModules.ExceptionsManager.updateExceptionMessage = swizzled;
+      isSwizzled = false;
+    }
+
+    trackGlobalErrors();
+
+    function reportError(error) {
+      try {
+        parseErrorStack = parseErrorStack || require('react-native/Libraries/Core/Devtools/parseErrorStack');
+        symbolicateStackTrace = symbolicateStackTrace || require('react-native/Libraries/Core/Devtools/symbolicateStackTrace');
+        if (parseErrorStack && symbolicateStackTrace) {
+          var parsedStacktrace = parseErrorStack(error);
+
+          symbolicateStackTrace(parsedStacktrace).then(function (goodStack) {
+            var stack = goodStack.map(function (stackFrame) {
+              return {
+                fileName: stackFrame.file,
+                functionName: stackFrame.methodName,
+                lineNumber: stackFrame.lineNumber
+              };
+            });
+
+            if (config.veto) {
+              stack = ramda.reject(config.veto, stack);
+            }
+
+            reactotron.error(error.message, stack);
+          });
+        }
+      } catch (e) {}
+    }
+
+    return {
+      features: {
+        reportError: reportError,
+        trackGlobalErrors: trackGlobalErrors,
+        untrackGlobalErrors: untrackGlobalErrors
+      }
+    };
+  };
+};
+
+var DEFAULTS$1 = {
+  url: 'http://localhost:8081'
+};
+
+var openInEditor = function openInEditor() {
+  var pluginConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  return function (reactotron) {
+    var options = ramda.merge(DEFAULTS$1, pluginConfig);
+
+    return {
+      onCommand: function onCommand(command) {
+        if (command.type !== 'editor.open') return;
+        var payload = command.payload;
+        var file = payload.file,
+            lineNumber = payload.lineNumber;
+
+        var url = options.url + '/open-stack-frame';
+        var body = { file: file, lineNumber: lineNumber || 1 };
+        var method = 'POST';
+
+        fetch(url, { method: method, body: JSON.stringify(body) });
+      }
+    };
+  };
+};
+
+var _typeof = typeof Symbol === "function" && typeof (typeof Symbol === 'function' ? Symbol.iterator : '@@iterator') === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== (typeof Symbol === 'function' ? Symbol.prototype : '@@prototype') ? "symbol" : typeof obj;
+};
+
+var classCallCheck = function classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var inherits = function inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+var possibleConstructorReturn = function possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+var toConsumableArray = function toConsumableArray(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }return arr2;
+  } else {
+    return Array.from(arr);
+  }
+};
+
+var Styles = {
+  container: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1000,
+    opacity: 0.25
+  }
+};
+
+var FullScreenOverlay = function (_Component) {
+  inherits(FullScreenOverlay, _Component);
+
+  function FullScreenOverlay(props) {
+    classCallCheck(this, FullScreenOverlay);
+
+    var _this = possibleConstructorReturn(this, (FullScreenOverlay.__proto__ || Object.getPrototypeOf(FullScreenOverlay)).call(this, props));
+
+    _this.state = {
+      opacity: Styles.container.opacity,
+      uri: null,
+      justifyContent: 'center',
+      alignItems: 'center'
+    };
+
+    props.emitter.on('overlay', function (payload) {
+      _this.setState(_extends({}, _this.state, payload));
+    });
+    return _this;
+  }
+
+  createClass(FullScreenOverlay, [{
+    key: 'createContainerStyle',
+    value: function createContainerStyle() {
+      var _state = this.state,
+          opacity = _state.opacity,
+          justifyContent = _state.justifyContent,
+          alignItems = _state.alignItems;
+
+      var _Dimensions$get = reactNative.Dimensions.get('window'),
+          width = _Dimensions$get.width,
+          height = _Dimensions$get.height;
+
+      var containerStyle = _extends({}, Styles.container, {
+        opacity: opacity,
+        width: width,
+        height: height,
+        justifyContent: justifyContent,
+        alignItems: alignItems
+      });
+
+      return containerStyle;
+    }
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state2 = this.state,
+          uri = _state2.uri,
+          width = _state2.width,
+          height = _state2.height,
+          growToWindow = _state2.growToWindow,
+          resizeMode = _state2.resizeMode,
+          _state2$marginLeft = _state2.marginLeft,
+          marginLeft = _state2$marginLeft === undefined ? 0 : _state2$marginLeft,
+          _state2$marginRight = _state2.marginRight,
+          marginRight = _state2$marginRight === undefined ? 0 : _state2$marginRight,
+          _state2$marginTop = _state2.marginTop,
+          marginTop = _state2$marginTop === undefined ? 0 : _state2$marginTop,
+          _state2$marginBottom = _state2.marginBottom,
+          marginBottom = _state2$marginBottom === undefined ? 0 : _state2$marginBottom;
+
+      var imageStyle = { width: width, height: height, marginTop: marginTop, marginRight: marginRight, marginBottom: marginBottom, marginLeft: marginLeft };
+      if (growToWindow) {
+        var windowSize = reactNative.Dimensions.get('window');
+        imageStyle.width = windowSize.width;
+        imageStyle.height = windowSize.height;
+      }
+      var image = uri ? React__default.createElement(reactNative.Image, { source: { uri: uri }, style: imageStyle, resizeMode: growToWindow ? resizeMode : null }) : React__default.createElement(reactNative.View, null);
+
+      return React__default.createElement(reactNative.View, { style: this.createContainerStyle(), pointerEvents: 'none' }, image);
+    }
+  }]);
+  return FullScreenOverlay;
+}(React.Component);
+
+FullScreenOverlay.propTypes = {
+  emitter: PropTypes.object.isRequired
+};
+
+var overlay = function overlay() {
+  return function (reactotron) {
+    var emitter = mitt();
+
+    return {
+      onCommand: function onCommand(command) {
+        if (command.type !== 'overlay') return;
+
+        emitter.emit('overlay', command.payload);
+      },
+
+      features: {
+        overlay: function overlay(WrappedComponent) {
+          return function (props) {
+            return React__default.createElement(reactNative.View, { style: { flex: 1 } }, React__default.createElement(WrappedComponent, props), React__default.createElement(FullScreenOverlay, { emitter: emitter }));
+          };
+        }
+      }
+    };
+  };
+};
+
+var PLUGIN_DEFAULTS$1 = {
+  ignore: []
+};
+
+var asyncStorage = function asyncStorage(options) {
+  return function (reactotron) {
+    var config = ramda.merge(PLUGIN_DEFAULTS$1, options || {});
+    var ignore = config['ignore'] || [];
+
+    var swizzSetItem = null;
+    var swizzRemoveItem = null;
+    var swizzMergeItem = null;
+    var swizzClear = null;
+    var swizzMultiSet = null;
+    var swizzMultiRemove = null;
+    var swizzMultiMerge = null;
+    var isSwizzled = false;
+
+    var reactotronShipStorageValues = function reactotronShipStorageValues(methodName, args) {
+      reactNative.AsyncStorage.getAllKeys(function (_, keys) {
+        return reactNative.AsyncStorage.multiGet(keys, function (_) {
+          var values = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+          var valuesToSend = ramda.reject(function (item) {
+            return ramda.contains(item[0], ignore);
+          }, values);
+
+          var previewArgs = '';
+          if (args && args.length > 1) {
+            previewArgs = Array.isArray(args[0]) ? 'Array: ' + args[0].length : args[0];
+          }
+          var preview = methodName ? methodName + '(' + previewArgs + ')' : '';
+          reactotron.send('asyncStorage.values.change', { preview: preview, value: valuesToSend });
+        });
+      });
+    };
+
+    var reactotronStorageHijacker = function reactotronStorageHijacker(originalMethod, methodName) {
+      return function () {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        var oldCallback = args.length > 0 ? args[args.length - 1] : null;
+
+        if (typeof oldCallback !== 'function') {
+          oldCallback = function oldCallback() {};
+          args.push(oldCallback);
+        }
+
+        var newArgs = [].concat(toConsumableArray(args.slice(0, args.length - 1)), [function () {
+          reactotronShipStorageValues(methodName, args);
+          oldCallback.apply(undefined, arguments);
+        }]);
+
+        return originalMethod.apply(undefined, toConsumableArray(newArgs));
+      };
+    };
+
+    var trackAsyncStorage = function trackAsyncStorage() {
+      if (isSwizzled) return;
+
+      swizzSetItem = reactNative.AsyncStorage.setItem;
+      reactNative.AsyncStorage.setItem = reactotronStorageHijacker(swizzSetItem, 'setItem');
+
+      swizzRemoveItem = reactNative.AsyncStorage.removeItem;
+      reactNative.AsyncStorage.removeItem = reactotronStorageHijacker(swizzRemoveItem, 'removeItem');
+
+      swizzMergeItem = reactNative.AsyncStorage.mergeItem;
+      reactNative.AsyncStorage.mergeItem = reactotronStorageHijacker(swizzMergeItem, 'mergeItem');
+
+      swizzClear = reactNative.AsyncStorage.clear;
+      reactNative.AsyncStorage.clear = reactotronStorageHijacker(swizzClear, 'clear');
+
+      swizzMultiSet = reactNative.AsyncStorage.multiSet;
+      reactNative.AsyncStorage.multiSet = reactotronStorageHijacker(swizzMultiSet, 'multiSet');
+
+      swizzMultiRemove = reactNative.AsyncStorage.multiRemove;
+      reactNative.AsyncStorage.multiRemove = reactotronStorageHijacker(swizzMultiRemove, 'multiRemove');
+
+      swizzMultiMerge = reactNative.AsyncStorage.multiMerge;
+      reactNative.AsyncStorage.multiMerge = reactotronStorageHijacker(swizzMultiMerge, 'multiMerge');
+
+      isSwizzled = true;
+    };
+
+    var untrackAsyncStorage = function untrackAsyncStorage() {
+      if (!isSwizzled) return;
+
+      reactNative.AsyncStorage.setItem = swizzSetItem;
+      reactNative.AsyncStorage.removeItem = swizzRemoveItem;
+      reactNative.AsyncStorage.mergeItem = swizzMergeItem;
+      reactNative.AsyncStorage.clear = swizzClear;
+      reactNative.AsyncStorage.multiSet = swizzMultiSet;
+      reactNative.AsyncStorage.multiRemove = swizzMultiRemove;
+      reactNative.AsyncStorage.multiMerge = swizzMultiMerge;
+
+      isSwizzled = false;
+    };
+
+    reactotronShipStorageValues();
+    trackAsyncStorage();
+
+    return {
+      features: {
+        trackAsyncStorage: trackAsyncStorage,
+        untrackAsyncStorage: untrackAsyncStorage
+      }
+    };
+  };
+};
+
+var DEFAULT_CONTENT_TYPES_RX = /^(image)\/.*$/i;
+
+var DEFAULTS$2 = {};
+
+var networking = function networking() {
+  var pluginConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  return function (reactotron) {
+    var options = ramda.merge(DEFAULTS$2, pluginConfig);
+
+    var ignoreContentTypes = options.ignoreContentTypes || DEFAULT_CONTENT_TYPES_RX;
+
+    var reactotronCounter = 1000;
+
+    var requestCache = {};
+
+    function onSend(data, xhr) {
+      if (options.ignoreUrls && ramda.test(options.ignoreUrls, xhr._url)) {
+        xhr._skipReactotron = true;
+        return;
+      }
+
+      reactotronCounter++;
+
+      xhr._trackingName = reactotronCounter;
+
+      requestCache[reactotronCounter] = {
+        data: data,
+        xhr: xhr,
+        stopTimer: reactotron.startTimer()
+      };
+    }
+
+    function onResponse(status, timeout, response, url, type, xhr) {
+      if (xhr._skipReactotron) {
+        return;
+      }
+
+      var rid = xhr._trackingName;
+      var cachedRequest = requestCache[rid] || {};
+      requestCache[rid] = null;
+
+      var data = cachedRequest.data,
+          stopTimer = cachedRequest.stopTimer;
+
+      var tronRequest = {
+        url: url || cachedRequest.xhr._url,
+        method: xhr._method || null,
+        data: data,
+        headers: xhr._headers || null
+      };
+
+      var body = null;
+
+      var contentType = xhr.responseHeaders && xhr.responseHeaders['content-type'] || xhr.responseHeaders && xhr.responseHeaders['Content-Type'] || '';
+
+      var useRealResponse = (typeof response === 'string' || (typeof response === 'undefined' ? 'undefined' : _typeof(response)) === 'object') && !ramda.test(ignoreContentTypes, contentType || '');
+
+      if (useRealResponse) {
+        try {
+          body = JSON.parse(response);
+        } catch (boom) {
+          body = response;
+        }
+      } else {
+        body = '~~~ skipped ~~~';
+      }
+
+      var tronResponse = {
+        body: body,
+        status: status,
+        headers: xhr.responseHeaders || null
+      };
+
+      reactotron.apiResponse(tronRequest, tronResponse, stopTimer());
+    }
+
+    XHRInterceptor.setSendCallback(onSend);
+    XHRInterceptor.setResponseCallback(onResponse);
+    XHRInterceptor.enableInterception();
+
+    return {};
+  };
+};
+
+var io = require('socket.io-client/dist/socket.io');
+
+var DEFAULTS = {
+  io: io,
+  host: getHost('localhost'),
+  port: 9090,
+  name: 'React Native App',
+  userAgent: 'reactotron-react-native',
+  reactotronVersion: 'BETA',
+  environment: __DEV__ ? 'development' : 'production' };
+
+var reactotron = reactotronCoreClient.createClient(DEFAULTS);
+
+reactotron.useReactNative = function () {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  if (options.errors !== false) {
+    reactotron.use(trackGlobalErrors(options.errors));
+  }
+
+  if (options.editor !== false) {
+    reactotron.use(openInEditor(options.editor));
+  }
+
+  if (options.overlay !== false) {
+    reactotron.use(overlay());
+  }
+
+  if (options.asyncStorage !== false) {
+    reactotron.use(asyncStorage(options.asyncStorage));
+  }
+
+  if (options.networking !== false) {
+    reactotron.use(networking(options.networking));
+  }
+
+  return reactotron;
+};
+
+exports.trackGlobalErrors = trackGlobalErrors;
+exports.openInEditor = openInEditor;
+exports.overlay = overlay;
+exports.asyncStorage = asyncStorage;
+exports.networking = networking;
+exports['default'] = reactotron;

@@ -1,0 +1,6 @@
+var memoizeWith = require('./memoizeWith');
+var toString = require('./toString');
+
+module.exports = memoizeWith(function () {
+  return toString(arguments);
+});

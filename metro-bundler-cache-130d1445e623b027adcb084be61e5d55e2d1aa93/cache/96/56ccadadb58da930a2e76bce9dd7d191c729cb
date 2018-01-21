@@ -1,0 +1,4 @@
+module.exports = function _functionName(f) {
+  var match = String(f).match(/^function (\w*)/);
+  return match == null ? '' : match[1];
+};

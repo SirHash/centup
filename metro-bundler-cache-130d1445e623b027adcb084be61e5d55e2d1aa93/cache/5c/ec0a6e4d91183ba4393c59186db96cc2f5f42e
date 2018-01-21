@@ -1,0 +1,260 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../../../../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/media/hfn/DADOS/Mega/Workspace/react-native/centup/src/modules/login/components/login.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _login = require('./styles/login.style');
+
+var _login2 = _interopRequireDefault(_login);
+
+var _FontAwesome = require('react-native-vector-icons/FontAwesome');
+
+var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
+
+var _reactNativeRouterFlux = require('react-native-router-flux');
+
+var _AppActions = require('../../../redux/actions/AppActions');
+
+var _constants = require('centup3/src/config/constants');
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _reactRedux = require('react-redux');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Login: {
+    displayName: 'Login'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/media/hfn/DADOS/Mega/Workspace/react-native/centup/src/modules/login/components/login.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var Login = _wrapComponent('Login')(function (_React$Component) {
+  _inherits(Login, _React$Component);
+
+  function Login() {
+    _classCallCheck(this, Login);
+
+    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+  }
+
+  _createClass(Login, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(
+        _reactNative.ImageBackground,
+        {
+          source: require('centup3/src/assets/imgs/bg-fundo.png'),
+          style: _login2.default.bgImg, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 13
+          }
+        },
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: _login2.default.containerTop, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 16
+            }
+          },
+          _react3.default.createElement(_reactNative.Image, { source: require('centup3/src/assets/imgs/logo.png'),
+            style: _login2.default.logoImg, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 17
+            }
+          }),
+          _react3.default.createElement(
+            _reactNative.Text,
+            {
+              style: _login2.default.textInit, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 19
+              }
+            },
+            'Welcome Back! We\'ve missed you'
+          )
+        ),
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: _login2.default.containerFields, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 24
+            }
+          },
+          _react3.default.createElement(_reactNative.TextInput, {
+            style: _login2.default.textFields,
+            value: this.props.email,
+            onChangeText: function onChangeText(text) {
+              _this2.props.changeEmail(text);
+            },
+            placeholder: 'Email',
+            keyboardType: 'email-address',
+            placeholderTextColor: 'gray',
+            underlineColorAndroid: 'transparent',
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 25
+            }
+          }),
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 34
+              }
+            },
+            _react3.default.createElement(_reactNative.TextInput, {
+              style: _login2.default.textFields,
+              secureTextEntry: true,
+              value: this.props.password,
+              onChangeText: function onChangeText(text) {
+                _this2.props.changePassword(text);
+              },
+              placeholder: 'Password',
+              keyboardType: 'email-address',
+              placeholderTextColor: 'gray',
+              underlineColorAndroid: 'transparent', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 35
+              }
+            })
+          )
+        ),
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: _login2.default.containerBtns, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 46
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.TouchableHighlight,
+            {
+              onPress: function onPress() {
+                _reactNativeRouterFlux.Actions[_constants2.default.LIST_NEWS_SCENE]();
+              },
+              style: _login2.default.btnLogin, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 47
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              { style: _login2.default.btnText, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 50
+                }
+              },
+              'Log In'
+            )
+          ),
+          _react3.default.createElement(
+            _reactNative.View,
+            { style: _login2.default.containerLinks, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 52
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.View,
+              { style: _login2.default.containerLinks, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 53
+                }
+              },
+              _react3.default.createElement(
+                _reactNative.TouchableHighlight,
+                {
+                  onPress: function onPress() {
+                    return null;
+                  },
+                  underlayColor: 'transparent', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 54
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  { style: _login2.default.textWhite, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 57
+                    }
+                  },
+                  'Login with Facebook'
+                )
+              ),
+              _react3.default.createElement(
+                _reactNative.TouchableHighlight,
+                {
+                  onPress: function onPress() {
+                    return null;
+                  },
+                  underlayColor: 'transparent', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 59
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  { style: _login2.default.textBold, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 62
+                    }
+                  },
+                  'Forgot Password?'
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Login;
+}(_react3.default.Component));
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    name: state.AppReducers.name,
+    email: state.AppReducers.email,
+    password: state.AppReducers.password
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { changeEmail: _AppActions.changeEmail, changePassword: _AppActions.changePassword })(Login);

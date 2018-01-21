@@ -1,0 +1,8 @@
+module.exports = {
+  init: function init() {
+    return this.xf['@@transducer/init']();
+  },
+  result: function result(_result) {
+    return this.xf['@@transducer/result'](_result);
+  }
+};

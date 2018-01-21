@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
+import Reactotron from 'reactotron-react-native'
 
 export default class ListNewsScreen extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export default class ListNewsScreen extends Component {
       .then(res => res.json())
 
       .then(res => {
+        // Reactotron.log(res)
         this.setState({
           // data: page === 1 ? res.results : [...this.state.data, ...res.results],
           data: res,

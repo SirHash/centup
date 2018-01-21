@@ -1,0 +1,7 @@
+var _reactotronReactNative = require('reactotron-react-native');
+
+var _reactotronReactNative2 = _interopRequireDefault(_reactotronReactNative);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactotronReactNative2.default.configure().useReactNative().connect();

@@ -1,0 +1,54 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/media/hfn/DADOS/Mega/Workspace/react-native/centup/src/modules/splash/components/splash.js';
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactNative = require('react-native');
+
+var _splash = require('./styles/splash.style');
+
+var _splash2 = _interopRequireDefault(_splash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+  return _react2.default.createElement(
+    _reactNative.View,
+    {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6
+      }
+    },
+    _react2.default.createElement(
+      _reactNative.ImageBackground,
+      {
+        source: require('centup3/src/assets/imgs/bg-fundo.jpeg'),
+        style: _splash2.default.bgImg, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 7
+        }
+      },
+      _react2.default.createElement(_reactNative.Image, {
+        source: require('centup3/src/assets/imgs/logo.png'),
+        style: _splash2.default.logoImg, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10
+        }
+      }),
+      _react2.default.createElement(
+        _reactNative.Text,
+        { style: _splash2.default.text, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 13
+          }
+        },
+        'Support content creators and charitis with the click of a button'
+      )
+    )
+  );
+};

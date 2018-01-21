@@ -1,0 +1,9 @@
+var _containsWith = require('./internal/_containsWith');
+var _curry3 = require('./internal/_curry3');
+var _filter = require('./internal/_filter');
+
+module.exports = _curry3(function innerJoin(pred, xs, ys) {
+  return _filter(function (x) {
+    return _containsWith(pred, x, ys);
+  }, xs);
+});
