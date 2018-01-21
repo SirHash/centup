@@ -1,54 +1,126 @@
-import React from 'react';
-import { View, Text, FlatList } from 'react-native';
-import axios from 'axios';
+import React, { Component } from "react";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import { List, ListItem, SearchBar } from "react-native-elements";
+import Reactotron from 'reactotron-react-native'
 
-import ListNews from './../components/listNews'
-import ItemNews from './../components/ItemNews'
-
-
-export default class ListNewsSreen extends React.Component {
-
-  constructor(props){
+export default class ListNewsScreen extends Component {
+  constructor(props) {
     super(props);
 
     this.state = {
       loading: false,
       data: [],
-      page: 1
+      page: 1,
+      error: null,
+      refreshing: false
     };
   }
 
-  getData(){
-    //console.log('https://jsonplaceholder.typicode.com/photos?_page=1');
-    axios.get('https://jsonplaceholder.typicode.com/photos', {
-        params: {
-          _page: this.state.page
-        }
-      })
-      .then((response) => {
-        this.setState({
-          data: [...this.state.data, ...response.data],
-          page: (this.state.page + 1)
-        });
-        console.log(this.state.page);
-        alert(this.state.page);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  componentDidMount() {
+    this.makeRemoteRequest();
   }
 
-  componentWillMount() {
-    this.getData();
-  }
+  makeRemoteRequest = () => {
+    const { page } = this.state;
+    // const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
+    const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}`;
+    this.setState({ loading: true });
+
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        Reactotron.log(this.state)
+        this.setState({
+          data: page === 1 ? res : [...this.state.data, ...res],
+          // data: res,
+          error: res.error || null,
+          loading: false,
+          refreshing: false
+        });
+      })
+      .catch(error => {
+        this.setState({ error, loading: false });
+      });
+  };
+
+  handleRefresh = () => {
+    this.setState(
+      {
+        page: this.state.page + 1,
+        refreshing: true
+      },
+      () => {
+        this.makeRemoteRequest();
+      }
+    );
+  };
+
+  handleLoadMore = () => {
+    this.setState(
+      {
+        page: this.state.page + 1
+      },
+      () => {
+        this.makeRemoteRequest();
+      }
+    );
+  };
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "86%",
+          backgroundColor: "#CED0CE",
+          marginLeft: "14%"
+        }}
+      />
+    );
+  };
+
+  renderHeader = () => {
+    return <SearchBar placeholder="Type Here..." lightTheme round />;
+  };
+
+  renderFooter = () => {
+    if (!this.state.loading) return null;
+
+    return (
+      <View style={{
+          paddingVertical: 20,
+          borderTopWidth: 1,
+          borderColor: "#CED0CE"
+      }} >
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
+
   render() {
-      return(
+    return (
+      <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
           data={this.state.data}
-          renderItem={({item}) => ( <ItemNews item={item} /> )}
+          renderItem={({ item }) => (
+            <ListItem
+              roundAvatar
+              title={`${item.title}`}
+              subtitle={item.url}
+              avatar={{ uri: item.thumbnailUrl }}
+              containerStyle={{ borderBottomWidth: 0 }}
+            />
+          )}
           keyExtractor={item => item.id}
-          onEndReached={() => { this.getData(); }}
+          ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
+          ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
+          onEndReached={this.handleLoadMore}
+          onEndReachedThreshold={1}
         />
-      )
-    }
+      </List>
+    );
+  }
 }
