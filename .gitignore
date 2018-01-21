@@ -6,6 +6,9 @@
 *.sock
 __tests__/
 .*
+
+*.apk
+
 haste-map-metro-bundler-1-3292b628975f260079d25612f867bd76
 haste-map-metro-bundler-1-3292b628975f260079d25612f867bd76
 # Xcode
