@@ -1,8 +1,0 @@
-var _curry3 = require('./internal/_curry3');
-var mergeDeepWithKey = require('./mergeDeepWithKey');
-
-module.exports = _curry3(function mergeDeepWith(fn, lObj, rObj) {
-  return mergeDeepWithKey(function (k, lVal, rVal) {
-    return fn(lVal, rVal);
-  }, lObj, rObj);
-});

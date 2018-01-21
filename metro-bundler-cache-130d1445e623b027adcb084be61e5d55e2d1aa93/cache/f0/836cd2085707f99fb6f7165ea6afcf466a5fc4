@@ -1,6 +1,0 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var CHANGE_EMAIL = exports.CHANGE_EMAIL = 'change_email';
-var CHANGE_PASSWORD = exports.CHANGE_PASSWORD = 'change_password';
-var CHANGE_NAME = exports.CHANGE_NAME = 'change_name';
