@@ -14,10 +14,10 @@ export default props => (
   <Router>
     <Stack key="root" >
 
-      <Scene key={consts.HOME_SCENE} component={Home} hideNavBar />
+      <Scene key={consts.HOME_SCENE} component={Home} initial hideNavBar />
       <Scene key={consts.LOGIN_SCENE} component={Login} title="Login" hideNavBar />
       <Scene key={consts.LIST_NEWS_SCENE} component={ListNewsScreen} title="List News" />
-      <Scene key={consts.NEWS_INFO_SCENE} component={NewsInfoScreen} initial title="News Info" />
+      <Scene key={consts.NEWS_INFO_SCENE} component={NewsInfoScreen} title="News Info" />
       <Scene key={consts.SAVE_STORAGE} component={SaveStorage} title="Save Storage" />
     </Stack>
   </Router>

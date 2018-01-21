@@ -111,7 +111,7 @@ export default class newsInfo extends Component {
   }
   displayData = async () => {
     try {
-      let obj = await AsyncStorage.getItem("idFavorito");
+    //   let obj = await AsyncStorage.getItem("idFavorito");
       let user = await AsyncStorage.getItem("user");
       let parsedData = JSON.parse(user);
     } catch (error) {
