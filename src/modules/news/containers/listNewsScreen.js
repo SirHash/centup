@@ -28,12 +28,11 @@ export default class ListNewsScreen extends Component {
 
     fetch(url)
       .then(res => res.json())
-
       .then(res => {
-        // Reactotron.log(res)
+        Reactotron.log(this.state)
         this.setState({
-          // data: page === 1 ? res.results : [...this.state.data, ...res.results],
-          data: res,
+          data: page === 1 ? res : [...this.state.data, ...res],
+          // data: res,
           error: res.error || null,
           loading: false,
           refreshing: false
@@ -96,7 +95,7 @@ export default class ListNewsScreen extends Component {
         <ActivityIndicator animating size="large" />
       </View>
     );
-  };//xgh
+  };
 
   render() {
     return (
@@ -119,7 +118,7 @@ export default class ListNewsScreen extends Component {
           onRefresh={this.handleRefresh}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={5}
+          onEndReachedThreshold={1}
         />
       </List>
     );
