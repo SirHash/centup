@@ -94,7 +94,7 @@ export default class ListNewsScreen extends Component {
         <ActivityIndicator animating size="large" />
       </View>
     );
-  };
+  };//xgh
 
   render() {
     return (
