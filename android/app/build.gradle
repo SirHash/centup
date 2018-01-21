@@ -95,7 +95,8 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.1" //🐴
+    // buildToolsVersion "23.0.2" //🐴 NÃO É OBRIGATÓRIO, MAS RECOMENDADO PELA DOCUMENTAÇÃO  
 
     defaultConfig {
         applicationId "com.centup3"
@@ -103,6 +104,10 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [
+            onesignal_app_id: "029368b5-43db-4f4d-a0ff-2e9d370e4c4a" ,
+            onesignal_google_project_number: "469758279234"
+        ] //🐴
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -137,6 +142,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-onesignal')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
