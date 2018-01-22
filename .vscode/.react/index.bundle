@@ -53741,27 +53741,26 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log(this.props);
       return _react3.default.createElement(
         _reactNative.ImageBackground,
         {
           source: require(664                                   ), // 664 = centup3/src/assets/imgs/bg-fundo.png
           style: _login2.default.bgImg, __source: {
             fileName: _jsxFileName,
-            lineNumber: 14
+            lineNumber: 13
           }
         },
         _react3.default.createElement(
           _reactNative.View,
           { style: _login2.default.containerTop, __source: {
               fileName: _jsxFileName,
-              lineNumber: 17
+              lineNumber: 16
             }
           },
           _react3.default.createElement(_reactNative.Image, { source: require(524                               ), // 524 = centup3/src/assets/imgs/logo.png
             style: _login2.default.logoImg, __source: {
               fileName: _jsxFileName,
-              lineNumber: 18
+              lineNumber: 17
             }
           }),
           _react3.default.createElement(
@@ -53769,7 +53768,7 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
             {
               style: _login2.default.textInit, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 20
+                lineNumber: 19
               }
             },
             'Welcome Back! We\'ve missed you'
@@ -53779,7 +53778,7 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
           _reactNative.View,
           { style: _login2.default.containerFields, __source: {
               fileName: _jsxFileName,
-              lineNumber: 25
+              lineNumber: 24
             }
           },
           _react3.default.createElement(_reactNative.TextInput, {
@@ -53794,7 +53793,7 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
             underlineColorAndroid: 'transparent',
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 26
+              lineNumber: 25
             }
           }),
           _react3.default.createElement(
@@ -53802,7 +53801,7 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 35
+                lineNumber: 34
               }
             },
             _react3.default.createElement(_reactNative.TextInput, {
@@ -53817,7 +53816,7 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
               placeholderTextColor: 'gray',
               underlineColorAndroid: 'transparent', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 36
+                lineNumber: 35
               }
             })
           )
@@ -53826,7 +53825,7 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
           _reactNative.View,
           { style: _login2.default.containerBtns, __source: {
               fileName: _jsxFileName,
-              lineNumber: 47
+              lineNumber: 46
             }
           },
           _react3.default.createElement(
@@ -53837,14 +53836,14 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
               },
               style: _login2.default.btnLogin, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 48
+                lineNumber: 47
               }
             },
             _react3.default.createElement(
               _reactNative.Text,
               { style: _login2.default.btnText, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 51
+                  lineNumber: 50
                 }
               },
               'Log In'
@@ -53854,14 +53853,14 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
             _reactNative.View,
             { style: _login2.default.containerLinks, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 53
+                lineNumber: 52
               }
             },
             _react3.default.createElement(
               _reactNative.View,
               { style: _login2.default.containerLinks, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 54
+                  lineNumber: 53
                 }
               },
               _react3.default.createElement(
@@ -53872,14 +53871,14 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
                   },
                   underlayColor: 'transparent', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 55
+                    lineNumber: 54
                   }
                 },
                 _react3.default.createElement(
                   _reactNative.Text,
                   { style: _login2.default.textWhite, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 58
+                      lineNumber: 57
                     }
                   },
                   'Login with Facebook'
@@ -53893,14 +53892,14 @@ var Login = _wrapComponent('Login')(function (_React$Component) {
                   },
                   underlayColor: 'transparent', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 60
+                    lineNumber: 59
                   }
                 },
                 _react3.default.createElement(
                   _reactNative.Text,
                   { style: _login2.default.textBold, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 63
+                      lineNumber: 62
                     }
                   },
                   'Forgot Password?'
