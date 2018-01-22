@@ -3,7 +3,7 @@
 .DS_Store
 
 __tests__/
-
+.vscode/
 # Xcode
 #
 build/
@@ -53,3 +53,5 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+.vscode/.react/index.bundle
+.vscode/.react/index.map
