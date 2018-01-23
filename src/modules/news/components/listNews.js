@@ -7,10 +7,7 @@ import styles from './styles/newslist.styles'
 
 export default class ListNews extends Component {
   render(){
-    return(
-        <TouchableHighlight
-          onPress={ () => { Actions[consts.NEWS_INFO_SCENE]() } }
-          underlayColor='transparent' >
+    return(        
           <View style={ styles.newsList }>
 
             <View style={ styles.viewList1 }>
@@ -26,8 +23,7 @@ export default class ListNews extends Component {
               <Image style={ styles.imgArrow } source={require('../../../assets/imgs/img-arrow.png')} />
             </View>
 
-          </View>
-        </TouchableHighlight>
+          </View>        
     )
   }
 }
