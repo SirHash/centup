@@ -25,33 +25,18 @@ export default StyleSheet.create({
   },
   spaceSlider:{
     flexDirection: 'row',
-    width: Dimensions.get('window').width * 2
-  },
-  itemSlider:{
-    flex: 1,
-    flexDirection: 'column',
-    padding: 38,
-    alignItems: 'center'
-  },
-  imgSlider:{
-    width: 150,
-    height: 150,
-  },
-  titleSlider:{
-    marginTop: 30,
-    fontSize: 22,
-    fontWeight: '300',
-    color: '#5defdd'
-  },
-  textSlider:{
-    fontSize: 14,
-    fontWeight: '200',
-    color: '#9e9e9e',
-    textAlign: 'center',
+    width: Dimensions.get('window').width * 3
   },
   containerNavigatorSlider:{
     flexDirection: 'row',
     flex: 1,
+  },
+  navigator:{
+    backgroundColor: 'gray',
+    borderRadius: 7,
+    width: 7, 
+    height: 7,
+    margin: 1
   },
   containerBtnSignUp:{
     flex: 4,

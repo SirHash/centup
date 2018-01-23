@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ImageBackground, StatusBar } from 'react-native';
-import Topo from '../components/Topo';
-import Slider from './Slider';
+import Topo from '../components/topo';
+import Slider from './slider';
 import styles from '../components/styles/home.style';
 
 export default props => (

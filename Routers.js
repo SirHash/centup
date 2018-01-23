@@ -12,10 +12,9 @@ import { Router, Stack, Scene } from 'react-native-router-flux';
 export default props => (
   <Router>
     <Stack key="root" >
-
-      <Scene key={consts.HOME_SCENE} component={Home} hideNavBar />
+      <Scene key={consts.HOME_SCENE} component={Home} hideNavBar initial />
       <Scene key={consts.LOGIN_SCENE} component={Login} title="Login" hideNavBar />
-      <Scene key={consts.LIST_NEWS_SCENE} component={ListNewsScreen} initial title="List News" />
+      <Scene key={consts.LIST_NEWS_SCENE} component={ListNewsScreen} title="List News" />
       <Scene key={consts.NEWS_INFO_SCENE} component={NewsInfoScreen} title="News Info" />
     </Stack>
   </Router>
