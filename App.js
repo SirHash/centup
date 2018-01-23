@@ -1,6 +1,4 @@
-import './ReactotronConfig'
 import React from 'react';
-
 import reducers from './src/redux/reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
