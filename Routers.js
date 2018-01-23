@@ -19,6 +19,7 @@ export default props => (
       <Scene key={consts.LIST_NEWS_SCENE} component={ListNewsScreen} title="List News" />
       <Scene key={consts.NEWS_INFO_SCENE} component={NewsInfoScreen} title="News Info" />
       <Scene key={consts.SAVE_STORAGE} component={SaveStorage} title="Save Storage" />
+
     </Stack>
   </Router>
 )

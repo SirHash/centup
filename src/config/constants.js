@@ -4,4 +4,5 @@ export default {
   LIST_NEWS_SCENE: "listNews",
   NEWS_INFO_SCENE: "newsInfoScreen",
   SAVE_STORAGE: "saveStorage"
+
 }

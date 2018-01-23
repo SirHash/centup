@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import axios from 'axios';
 
+
 import ListNews from './../components/listNews'
 import ItemNews from './../components/ItemNews'
 
@@ -26,6 +27,7 @@ export default class ListNewsSreen extends React.Component {
         }
       })
       .then((response) => {
+
         this.setState({
           data: [...this.state.data, ...response.data],
           page: (this.state.page + 1)
@@ -37,6 +39,7 @@ export default class ListNewsSreen extends React.Component {
         console.log(error);
       });
   }
+
 
   componentWillMount() {
     this.getData();

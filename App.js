@@ -1,3 +1,4 @@
+import './ReactotronConfig'
 import React from 'react';
 
 import reducers from './src/redux/reducers';
@@ -17,16 +18,6 @@ export default class App extends React.Component {
     );
   }
 };
-
-
-
-
-
-
-
-
-
-
 
 
 //🐴 Tenho que certeza que não me viu!!!, mas eu to aí.
